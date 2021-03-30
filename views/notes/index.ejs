@@ -1,0 +1,93 @@
+<%- include('../partials/header') %>
+
+<div class='container'>
+<h1>Browse notes</h1>
+
+<!-- <div class="dropdown d-inline">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Choose a Grade
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <a class="dropdown-item" href="/notes/7">7</a>
+      <a class="dropdown-item" href="/notes/8">8</a>
+      <a class="dropdown-item" href="/notes/9">9</a>
+    </div>
+</div>
+
+<div class="dropdown d-inline">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Choose a Subject
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <a class="dropdown-item" href="/notes/science">Science</a>
+      <a class="dropdown-item" href="/notes/math">Math</a>
+      <a class="dropdown-item" href="/notes/language">Language</a>
+      <a class="dropdown-item" href="/notes/social">Social Studies</a>
+      <a class="dropdown-item" href="/notes/other">Other Subjects</a>
+    </div>
+</div>
+
+<div class="dropdown d-inline">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Sort By...
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <a class="dropdown-item" href="#">Hot (24 hours)</a>
+      <a class="dropdown-item" href="#">New</a>
+    </div>
+</div> -->
+
+<button class="btn btn-success"><a class='text-white' href="/notes">See all</a></button>
+
+<div class="d-inline">
+<button class="btn btn-success" aria-haspopup="true" aria-expanded="false">
+    <a href="/notes/new" style='color: white;'>+ Add New Note!</a>
+</button>
+</div>
+
+
+
+<div style='height: 15px;'></div>
+<% notes.forEach(function(note){ %>
+    <div class="card mb-3 rounded">
+        <div class="card-body" style='margin: 15px;'>
+          <h4 class="card-title"><a href="/notes/<%= note._id %>" style='color: black;'><%= note.title %></a></h4>
+          <h6 class="card-subtitle mb-2 text-muted">Posted by <span class='text-primary'>Username</span></h6>
+          <p><%- note.text.substring(0, 128)%>...</p>
+          <p class='card-text'><b>Grade <%= note.grade %> </b> -
+                <% if(note.topic === 'Science'){ %>
+                <span class='text-warning'>Science <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-lightning-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M11.251.068a.5.5 0 0 1 .227.58L9.677 6.5H13a.5.5 0 0 1 .364.843l-8 8.5a.5.5 0 0 1-.842-.49L6.323 9.5H3a.5.5 0 0 1-.364-.843l8-8.5a.5.5 0 0 1 .615-.09z"/>
+                </svg></span>
+                <% }else if(note.topic === 'Math'){ %>
+                <span class='text-success'>Math <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-dice-3-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M3 0a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V3a3 3 0 0 0-3-3H3zm2.5 4a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm8 8a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zM8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                </svg></span>      
+                <% }else if(note.topic === 'Language'){ %>
+                <span class='text-info'>Languages <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chat-left-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                </svg></span>  
+                <% }else if(note.topic === 'Social Studies'){ %>
+                <span class='text-danger'>Social Studies <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-people-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/>
+                </svg></span>  
+                <% }else{ %>
+                <span class='text-secondary'>Other Subjects <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pen-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M13.498.795l.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001z"/>
+                  </svg></span> 
+                <% } %>
+                </p>
+          <a href="/notes/<%= note._id %>" class="card-link">Read more...</a>
+          <a href="#" class="card-link text-success">See note</a>
+          <a href="#" class="card-link text-danger" style="float: right"><b>Delete</b></a>
+          <a href="#" class="card-link text-warning" style="float: right">Edit note</a>
+
+
+        </div>
+    </div>
+    <div style='height: 15px;'></div>
+<% }) %>
+
+
+</div>
+<%- include('../partials/footer') %>

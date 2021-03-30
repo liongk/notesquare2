@@ -1,0 +1,69 @@
+<%- include('../partials/header') %>
+
+<div class='container'>
+    <div class='row'>
+        <div class='col-8'>
+            <h1><%= note.title %></h1>
+            <p class='text-muted'>Posted on <span class='text-primary'><%= note.dateCreated.toDateString()%></span> by <span class='text-primary'>Username</span></p>
+            <p class='card-text'><b>Grade <%= note.grade %> </b> -
+                <% if(note.topic === 'Science'){ %>
+                <span class='text-warning'>Science <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-lightning-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M11.251.068a.5.5 0 0 1 .227.58L9.677 6.5H13a.5.5 0 0 1 .364.843l-8 8.5a.5.5 0 0 1-.842-.49L6.323 9.5H3a.5.5 0 0 1-.364-.843l8-8.5a.5.5 0 0 1 .615-.09z"/>
+                </svg></span>
+                <% }else if(note.topic === 'Math'){ %>
+                <span class='text-success'>Math <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-dice-3-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M3 0a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V3a3 3 0 0 0-3-3H3zm2.5 4a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm8 8a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zM8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                </svg></span>      
+                <% }else if(note.topic === 'Language'){ %>
+                <span class='text-info'>Languages <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chat-left-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                </svg></span>  
+                <% }else if(note.topic === 'Social Studies'){ %>
+                <span class='text-danger'>Social Studies <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-people-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/>
+                </svg></span>  
+                <% }else{ %>
+                <span class='text-secondary'>Other Subjects <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pen-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M13.498.795l.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001z"/>
+                  </svg></span> 
+                <% } %>
+            </p>
+            <h3>Description</h3>
+            <p><%= note.text %></p>
+            <h6 class="bg-black"><span class="text-success">cmd + D</span> To Bookmark</h6>
+            <hr>
+
+            <div>
+                <% note.forEach(function(image) { %>
+                <div>
+                    <div>
+                        <img src="data:image/<%=image.img.contentType%>;base64,
+                             <%=image.img.data.toString('base64')%>">
+                        <div>
+                        </div>
+                    </div>
+                </div>
+                <% }) %>
+            </div>
+
+            <button class='btn text-success col-5'>Download <b><%= note.title %></b></button>
+            <!-- <div class='col-1'></div> -->
+            <button class='btn btn-success col-5'>Read on NoteSquare</button>
+            <hr>
+            <div class='jumbotron'>
+                <h3>Comments</h3>
+
+            </div>
+        </div>
+        <div class='col-4'>
+            <div class='jumbotron'>
+                <h4>See more Grade <%= note.grade%> - <%= note.topic %></h4>
+            </div>
+            <div class='jumbotron'>
+                <h4>See more by <span class='text-primary'>Username</span></h4>
+            </div>
+            <a href="/notes" class='text-white'><button class="btn btn-primary btn-lg btn-block">Back</button></a>
+        </div>
+    </div>
+</div>
+<%- include('../partials/footer') %>

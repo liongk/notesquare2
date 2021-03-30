@@ -1,0 +1,59 @@
+<%- include('../partials/header') %>
+<div class="container">
+
+<form action="/notes" method="POST" enctype="multipart/form-data">
+    <h1>Share new notes!</h1>
+    <div style="height: 30px;"></div>
+    <!-- title  -->
+    <h3>Title</h3>
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="How to make notes on NoteSquare" name="title">
+    </div>
+    <div style="height: 30px;"></div>
+    <!-- text -->
+
+    <h3>Description</h3>
+    <div class="input-group">
+    <textarea class="form-control" aria-label="With textarea" placeholder=
+"A guide to writing a good description:
+- Use keyboard commands to italicize, bold and underline text
+- Use bullet points to enhance readability
+
+Other things you can do
+- Explain the contents of your notes - What language your notes are in, how many pages
+- Write methods on revision for the notes" style="resize: none; height: 300px;" name="text"></textarea>
+    </div>
+    
+    <div style="height: 30px;"></div>
+          <!-- files -->
+    <h3>File</h3>
+    <h6>Upload a pdf less than 4MB. (If your pdf exceeds this, divide the content into 2 or more notes.)</h6>
+    <input type="file" class="form-control-file" id="exampleFormControlFile1" name="file">
+    <div style="height: 30px;"></div>
+
+    <h3>Category</h3>
+    <h6>This helps people discover and choose your notes.</h6>
+    <div style="height: 15px;"></div>
+    <!-- topic -->
+    <div class="form-group">
+      <label class="radio-inline">Pick A Subject |</label>
+      <label class="radio-inline" style="margin-right: 10px;"><input type="radio" name="topic" style="margin-right: 5px;" value='Science'>Science</label>
+      <label class="radio-inline" style="margin-right: 10px;"><input type="radio" name="topic" style="margin-right: 5px;" value='Math'>Math</label>
+      <label class="radio-inline" style="margin-right: 10px;"><input type="radio" name="topic" style="margin-right: 5px;" value='Language'>Language</label>
+      <label class="radio-inline" style="margin-right: 10px;"><input type="radio" name="topic" style="margin-right: 5px;" value='Social Studies'>Social Studies</label>
+      <label class="radio-inline"><input type="radio" name="topic" style="margin-right: 5px;" value='Other Subject'>Other</label>
+    </div>
+    <!-- grade -->
+    <div class="form-group">
+      <label class="radio-inline">Pick A Grade |</label>
+      <label class="radio-inline" style="margin-right: 10px;"><input type="radio" name="grade" style="margin-right: 5px;" value='7'>7</label>
+      <label class="radio-inline" style="margin-right: 10px;"><input type="radio" name="grade" style="margin-right: 5px;" value='8'>8</label>
+      <label class="radio-inline"><input type="radio" name="grade" style="margin-right: 5px;" value='9'>9</label>
+    </div>
+    <!-- <div style="height: 30px;"></div> -->
+      
+    <button class="btn btn-light btn-lg btn-block">Submit</button>
+</form>
+</div>
+
+<%- include('../partials/footer') %>
